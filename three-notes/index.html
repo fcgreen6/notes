@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<!--
+--Three.js Notes Index--
+Author: Fletcher Green
+-->
+
+<!--------------------------------------------------------------------------
+Section: Three.js Project Index Example
+--------------------------------------------------------------------------->
+
+<html lang="en">
+
+    <!-- 
+    --Metadata-- 
+    -->
+    <head>
+        <meta charset="utf-8">
+        <title>Three.js Notes</title>
+        <link rel="stylesheet" href="./style.css">
+    </head>
+
+    <!-- 
+    --Body-- 
+    Description: The body of this web page contains a single div that the shader will be
+                 created within.
+    -->
+    <body>
+        <div id = "shader"></div>
+        <p>Hello</p>
+    </body>
+
+    <!-- 
+    --Three.js Import-- 
+    Description: This is how Three.js is imported. Make sure the desired version is used.
+    -->
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://cdn.jsdelivr.net/npm/three@0.181.1/build/three.module.js",
+                "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.181.1/examples/jsm/"
+            }
+        }
+    </script>
+
+    <!-- Script where the imported Three.js library will be used. -->
+    <script type="module" src="./main.js"></script>
+</html>

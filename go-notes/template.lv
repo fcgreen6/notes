@@ -1,0 +1,33 @@
+// Language Rules:
+// - Variables are only used to pass values to functions. The for loop is just a special kind of function. Because of this,
+//   there is no need for an assignment operator.
+// - Addition and subtraction are the only supported arithmetic operations. Addition and subtraction only works between integers.
+// - String types and float types are also supported but cannot be used within arithmetic operations.
+
+lv "Template"
+song "Boogie"
+
+func main() {
+
+    // Place function will place the specified object on the given x and y coordinates.
+    place("block", 10, 1);
+    
+    // Speed function changes the player's speed.
+    speed(2.0, 10);
+
+    // Background function changes the background color.
+    bg("#4CE46C", 10, 3.0)
+    
+    // For loop syntax.
+    for $i; 0; 10 {
+        place("block", 11 + $i, 1);
+    };
+
+    CreateSpikes(15, 2);
+};
+
+func CreateSpikes($x, $y) {
+
+    place("spike", $x, $y);
+    place("spike", $x, $y + 1);
+};
