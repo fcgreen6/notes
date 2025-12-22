@@ -461,19 +461,28 @@ int main(int argc, char* argv[]) {
         testNum++;
     }
 
-    // --BaseClass Class Test--
-    int initArr[3] = {1, 2, 3};
-    BaseClass bC1(initArr, 3);
-    BaseClass bC2(bC1);
-    cout << "Test " << testNum << ": BaseClass Test [" << bC1.BaseSum() + bC2.BaseSum() << "]." << endl;
-    testNum++;
+    {
+        // --BaseClass Class Test--
+        int initArr[3] = {1, 2, 3};
+        BaseClass bC1(initArr, 3);
+        BaseClass bC2(bC1);
+        cout << "Test " << testNum << ": BaseClass Test [" << bC1.BaseSum() + bC2.BaseSum() << "]." << endl;
+        testNum++;
 
-    // --PrivateSubClass Class Test--
-    PrivateSubClass sC1(initArr, 3, EnumClass::ZERO);
-    cout << "Test " << testNum << ": PrivateSubClass Test ";
-    sC1.Print();
-    cout << "." << endl;
-    testNum++;
+        // --PrivateSubClass Class Test--
+        PrivateSubClass sC1(initArr, 3, EnumClass::ZERO);
+        cout << "Test " << testNum << ": PrivateSubClass Test ";
+        sC1.Print();
+        cout << "." << endl;
+        testNum++;
+
+        // --ProtectedSubClass Class Test--
+        ProtectedSubClass sC2(initArr, 3, EnumClass::ZERO);
+        cout << "Test " << testNum << ": ProtectedSubClass Test ";
+        sC2.Print();
+        cout << "." << endl;
+        testNum++;
+    }
     
     return 0;
 }

@@ -132,3 +132,17 @@ PrivateSubClass::PrivateSubClass(int* numArr, unsigned int size, EnumClass::numb
 void PrivateSubClass::Print() {
     cout << "[" << _classNum << ", " << BaseSum() << "]";
 }
+
+// --ProtectedSubClass Constructor--
+// Description: Creates an instance of ProtectedSubClass.
+// Parameters:
+//             - numArr: Array used to create the BaseClass.
+//             - size: Integer used to create the BaseClass.
+//             - classNum: Enum type used in ProtectedSubClass.
+ProtectedSubClass::ProtectedSubClass(int* numArr, unsigned int size, EnumClass::number classNum): BaseClass(numArr, size), _classNum(classNum) {}
+
+// --ProtectedSubClass::Print Method--
+// Description: Prints basic information about the ProtectedSubClass instance.
+void ProtectedSubClass::Print() {
+    cout << "[" << _classNum << ", " << BaseSum() << ", " << _size << "]";
+}

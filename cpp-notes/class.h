@@ -86,13 +86,24 @@ bool operator||(const OverloadedClass& lhs, const OverloadedClass& rhs);
 bool operator!(const OverloadedClass& obj);
 
 // --Private Subclass--
-// Description: A class which inherits BaseClass privatley. This means that public members become private. Private and protected members
-//              are inaccessable.
+// Description: A class which inherits BaseClass privatley. This means that public members become private. Private 
+//              and protected members are inaccessable.
 class PrivateSubClass: private BaseClass {
     private:
         EnumClass::number _classNum;
     public:
         explicit PrivateSubClass(int* numArr, unsigned int size, EnumClass::number classNum);
+        void Print();
+};
+
+// --Protected Subclass--
+// Description: A class which inherits BaseClass in a protected sense. This means that public members become protected. Protected
+//              members stay protected and private members are inaccessable.
+class ProtectedSubClass: protected BaseClass {
+    private:
+        EnumClass::number _classNum;
+    public:
+        explicit ProtectedSubClass(int* numArr, unsigned int size, EnumClass::number classNum);
         void Print();
 };
 
