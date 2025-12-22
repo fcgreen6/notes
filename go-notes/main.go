@@ -1,3 +1,8 @@
+// --Go Programming Language Notes--
+// Author: Fletcher Green
+// TODO: GetDigit Function (Help me remember how modulo works).
+// TODO: Median of Two Sorted Arrays in O(log(m+n)).
+
 // ------------------------------------------------------------------------------------------------------------------------
 // Section: Project Management
 // ------------------------------------------------------------------------------------------------------------------------
@@ -24,7 +29,7 @@ package main
 //                    The relative package medtwoarr is included to display this functionality.
 import(
 	"fmt"
-	//"strings"
+	"strings"
 	//"notes/medtwoarr"
 )
 
@@ -125,7 +130,121 @@ func main() {
 		_, ok := m1["four"];
 		fmt.Printf("Test 3: Maps [%v, %v, %v, %v, %v, %v, %v, %v].\n", m1["one"], m1["two"], m1["three"], m1["four"], m2["one"], m2["two"], m2["three"], ok);
 	}
+
+	// ------------------------------------------------------------------------------------------------------------------------
+	// Section: Function Tests
+	// ------------------------------------------------------------------------------------------------------------------------
+
+	// --Practice Question One--
+	{
+		// Create a multidimentional string slice.
+		var paraTest [][]string;
+		paraTest = append(paraTest, []string{"Hello", "World!"});
+		paraTest = append(paraTest, []string{"Naruto..."});
+		paraTest = append(paraTest, []string{"This", "is", "a", "very", "long", "sentence", "that", "I", "have", "created."});
+		paraTest = append(paraTest, []string{"Naruto..."});
+		paraTest = append(paraTest, []string{"Goodbye.", "I", "am", "done."});
+
+		// Create allignments to match with paraTest.
+		var alignTest []string = []string{"RIGHT", "LEFT", "LEFT", "RIGHT", "LEFT"};
+
+		// Format console output for practice question one.
+		fmt.Printf("Test 4: Practice Question One [\n");
+		var testSolution []string = PracticeQuestionOne(paraTest, alignTest, 10);
+		for i := 0; i < len(testSolution); i++ {
+			fmt.Printf("%v\n", testSolution[i]);
+		}
+		fmt.Printf("].\n");
+	}
 }
 
-// TODO: GetDigit Function (Help me remember how modulo works).
-// TODO: Median of Two Sorted Arrays in O(log(m+n)).
+// ------------------------------------------------------------------------------------------------------------------------
+// Section: Practice Questions
+// ------------------------------------------------------------------------------------------------------------------------
+
+// --PracticeQuestionOne Function--
+// Description: A practice problem related to formatting paragraphs. The words at each index of paragraphs are to be
+//              separated by spaces. If words can't fit within the width, they are moved to the next line.
+//              Additionally, the alignment array specifies which side of the page the words are attached to.
+// paragraphs: A slice of string slices. Each inner slice contains the paragraph words which are to be separated by spaces.
+// alignment: The side of the page the words of the current paragraph are attached to.
+// width: The width, in characters, of the page.
+// Return Value: An array of strings, where each string is a line of output.
+func PracticeQuestionOne(paragraphs [][]string, alignment []string, width int) []string {
+	
+	// Start the return variable with the top border.
+	var retVal []string = []string{CreateBorder(width + 2)};
+
+	// Iterate over each paragraph.
+	for i := 0; i < len(paragraphs); i++ {
+
+		var currLine string = ""; // The current line of output being created.
+		var firstIteration bool = true; // A flag marked as true when a word is the first on the line.
+
+		// Iterate over every word in the paragraph.
+		for j := 0; j < len(paragraphs[i]); j++ {
+
+			// Get the current word in the paragraph.
+			var currWord string = paragraphs[i][j];
+
+			if firstIteration {
+
+				// If it is the first iteration of the line, currLine is just the current word.
+				currLine = currWord;
+				firstIteration = false;
+			} else if (len(currLine) + len(currWord) + 1) <= width {
+
+				// Join new word if it fits in the current line.
+				currLine = strings.Join([]string{currLine, " ", currWord}, "");
+			} else if (len(currLine) + len(currWord) + 1) > width {
+
+				// Append the current line to output if it does not fit in the designated width.
+				if string(alignment[i]) == "LEFT" {
+					retVal = append(retVal, strings.Join([]string{"*", currLine, CreateSpace(width - len(currLine)), "*"}, ""));
+				} else {
+					retVal = append(retVal, strings.Join([]string{"*", CreateSpace(width - len(currLine)), currLine, "*"}, ""));
+				}
+				currLine = currWord;
+			}
+
+			if j == (len(paragraphs[i]) - 1) {
+
+				// Append the current line to output if the paragraph ends.
+				if string(alignment[i]) == "LEFT" {
+					retVal = append(retVal, strings.Join([]string{"*", currLine, CreateSpace(width - len(currLine)), "*"}, ""));
+				} else {
+					retVal = append(retVal, strings.Join([]string{"*", CreateSpace(width - len(currLine)), currLine, "*"}, ""));
+				}
+				firstIteration = true;
+			}
+		}
+	}
+
+	// Add the bottom border to the return variable.
+	retVal = append(retVal, CreateBorder(width + 2));
+	return retVal;
+}
+
+// --CreateBorder Function--
+// Description: Creates a line of "*" with the specified width.
+// width: The width of the string to create.
+// Return Value: A string filled with "*" of the specified length.
+func CreateBorder(width int) string {
+	var retVal string = "";
+	for i := 0; i < width; i++ {
+		retVal = strings.Join([]string{retVal, "*"}, "");
+	}
+	return retVal;
+}
+
+// --CreateSpace Function--
+// Description: Creates a line of " " with the specified width.
+// width: The width of the string to create.
+// Return Value: A string filled with " " of the specified length.
+func CreateSpace(width int) string {
+	var retVal string = "";
+	for i := 0; i < width; i++ {
+		retVal = strings.Join([]string{retVal, " "}, "");
+	}
+	return retVal;
+}
