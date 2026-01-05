@@ -482,6 +482,18 @@ int main(int argc, char* argv[]) {
         sC2.Print();
         cout << "." << endl;
         testNum++;
+
+        // --PublicSubClass Class Test--
+        PublicSubClass sC3(initArr, 3, EnumClass::ZERO);
+        cout << "Test " << testNum << ": PublicSubClass Test ";
+        sC3.Print();
+        cout << "." << endl;
+        testNum++;
+
+        // --PublicSubClass Class Base Class Method Test--
+        cout << "Test " << testNum << ": PublicSubClass Base Class Method Test [";
+        cout << sC3.BaseSum() << "]." << endl;
+        testNum++;
     }
     
     return 0;

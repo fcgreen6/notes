@@ -107,4 +107,15 @@ class ProtectedSubClass: protected BaseClass {
         void Print();
 };
 
+// --Public Subclass--
+// Description: A class which inherits BaseClass in a publicly. This means that public members stay public and protected
+//              members stay protected. Private members are inaccessable.
+class PublicSubClass: public BaseClass {
+    private:
+        EnumClass::number _classNum;
+    public:
+        explicit PublicSubClass(int* numArr, unsigned int size, EnumClass::number classNum);
+        void Print();
+};
+
 #endif
